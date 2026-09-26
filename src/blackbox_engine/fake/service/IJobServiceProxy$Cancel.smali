@@ -1,0 +1,85 @@
+.class public Ltop/niunaijun/blackbox/fake/service/IJobServiceProxy$Cancel;
+.super Ltop/niunaijun/blackbox/fake/hook/MethodHook;
+.source "IJobServiceProxy.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Ltop/niunaijun/blackbox/fake/service/IJobServiceProxy;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x9
+    name = "Cancel"
+.end annotation
+
+.annotation runtime Ltop/niunaijun/blackbox/fake/hook/ProxyMethod;
+    value = "cancel"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 1
+
+    .line 75
+    invoke-direct {p0}, Ltop/niunaijun/blackbox/fake/hook/MethodHook;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
+    .registers 7
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/Throwable;
+        }
+    .end annotation
+
+    .line 78
+    invoke-static {p3}, Ltop/niunaijun/blackbox/fake/service/IJobServiceProxy;->-$$Nest$smrequireJobIdIndex([Ljava/lang/Object;)I
+
+    move-result p0
+
+    .line 79
+    invoke-static {}, Ltop/niunaijun/blackbox/BlackBoxCore;->getBJobManager()Ltop/niunaijun/blackbox/fake/frameworks/BJobManager;
+
+    move-result-object v0
+
+    .line 80
+    invoke-static {}, Ltop/niunaijun/blackbox/app/BActivityThread;->getAppConfig()Ltop/niunaijun/blackbox/entity/AppConfig;
+
+    move-result-object v1
+
+    iget-object v1, v1, Ltop/niunaijun/blackbox/entity/AppConfig;->processName:Ljava/lang/String;
+
+    aget-object v2, p3, p0
+
+    check-cast v2, Ljava/lang/Integer;
+
+    invoke-virtual {v2}, Ljava/lang/Integer;->intValue()I
+
+    move-result v2
+
+    invoke-virtual {v0, v1, v2}, Ltop/niunaijun/blackbox/fake/frameworks/BJobManager;->cancel(Ljava/lang/String;I)I
+
+    move-result v0
+
+    .line 79
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    aput-object v0, p3, p0
+
+    .line 81
+    invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+###### Class top.niunaijun.blackbox.fake.service.IJobServiceProxy.CancelAll (top.niunaijun.blackbox.fake.service.IJobServiceProxy$CancelAll)
